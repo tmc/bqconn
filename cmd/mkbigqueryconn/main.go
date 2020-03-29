@@ -16,14 +16,16 @@ import (
 
 var (
 	cmdCreate = &cobra.Command{
-		Use:  "create",
-		Args: cobra.ExactArgs(1),
-		Run:  runCreate,
+		Use:   "create",
+		Short: "Create a BigQuery external connection.",
+		Args:  cobra.ExactArgs(1),
+		Run:   runCreate,
 	}
 	cmdUpdate = &cobra.Command{
-		Use:  "update",
-		Args: cobra.ExactArgs(1),
-		Run:  runUpdate,
+		Use:   "update",
+		Short: "Update a BigQuery external connection.",
+		Args:  cobra.ExactArgs(1),
+		Run:   runUpdate,
 	}
 )
 
@@ -45,22 +47,6 @@ func getIn(src string) (io.Reader, error) {
 		in, err = os.Open(src)
 	}
 	return in, err
-}
-
-func run(ctx context.Context, src string, dump bool) error {
-	c, err := bigqueryconnection.NewConnectionClient(ctx)
-	if err != nil {
-		return err
-	}
-	in, err := getIn(src)
-	if err != nil {
-		return err
-	}
-	fmt.Println(c, in)
-	if err != nil {
-		return err
-	}
-	return nil
 }
 
 func errOut(err error) {
