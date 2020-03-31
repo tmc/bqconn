@@ -5,5 +5,4 @@ protos:
 	rm -rf bqconn/*
 	protoc -I ${API_COMMON_PROTOS} -I ${GOOGLEAPIS_PROTOS} --go_gapic_out .//bqconn --go_gapic_opt 'go-gapic-package=github.com/tmc/mkbigqueryconn/bqconn;bqconn' google/cloud/bigquery/connection/v1beta1/connection.proto
 	mv bqconn/github.com/tmc/mkbigqueryconn/bqconn/*.go ./bqconn/
-	# protoc -I ${GOOGLEAPIS_PROTOS} --go_cli_out=cmd/bqconn-cli --go_cli_opt "root=bqconn" --go_cli_opt "gapic=github.com/tmc/mkbigqueryconn/bqconn" google/cloud/bigquery/connection/v1beta1/connection.proto
-	# https://github.com/googleapis/gapic-generator-go/issues/344
+	protoc -I ${GOOGLEAPIS_PROTOS} --go_cli_out=cmd/bqconn --go_cli_opt "root=bqconn" --go_cli_opt "gapic=github.com/tmc/mkbigqueryconn/bqconn" google/cloud/bigquery/connection/v1beta1/connection.proto
